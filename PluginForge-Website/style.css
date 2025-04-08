@@ -1,0 +1,176 @@
+```css
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1e40af;
+    --light-blue: #dbeafe;
+    --dark-accent: #1f2937;
+    --light-gray: #f3f4f6;
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+    background-color: #f9fafb;
+}
+.sidebar {
+    background-color: var(--dark-accent);
+    min-height: calc(100vh - 64px);
+}
+.logo-text {
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.code-editor {
+    height: 400px;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.preview-container {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    background-color: white;
+    min-height: 400px;
+}
+.drag-item {
+    cursor: move;
+    user-select: none;
+}
+.drop-zone {
+    min-height: 200px;
+    border: 2px dashed #e5e7eb;
+    background-color: #f9fafb;
+    border-radius: 0.375rem;
+}
+.drop-zone.active {
+    border-color: var(--primary-blue);
+    background-color: var(--light-blue);
+}
+.template-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+/* Default state for tab content */
+.tab-content {
+    display: none;
+}
+/* Display block when active */
+.tab-content.active {
+    display: block;
+}
+.doc-content {
+    display: none;
+}
+.doc-content.active {
+    display: block;
+}
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 2px solid transparent;
+    cursor: pointer; /* Add cursor pointer for better UX */
+    color: #6b7280; /* Default color for inactive tabs */
+    transition: color 0.2s, border-color 0.2s; /* Smooth transition */
+}
+.tab-button:hover {
+    color: var(--primary-blue); /* Hover effect */
+}
+.tab-button.active {
+    border-bottom: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+.custom-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* Stepper styles */
+.stepper-item {
+    position: relative;
+    flex: 1; /* Make items distribute space evenly */
+}
+.stepper-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 15px; /* Align vertically with the center of the number */
+    left: calc(50% + 16px); /* Start after the number */
+    width: calc(100% - 32px); /* Span between numbers */
+    height: 2px;
+    background-color: #e5e7eb;
+    z-index: 0;
+}
+.stepper-item.completed:not(:last-child)::after,
+.stepper-item.active:not(:last-child)::after { /* Line should also be blue if active */
+    background-color: var(--primary-blue);
+}
+.step-number {
+    z-index: 1;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #6b7280;
+    margin: 0 auto 0.5rem;
+    font-weight: 600; /* Make numbers bolder */
+    border: 2px solid transparent; /* Prepare for active/completed border */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+.stepper-item.active .step-number {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+.stepper-item.completed .step-number {
+    background-color: var(--primary-blue); /* Keep background blue for completed */
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+/* Style for text below step number */
+.stepper-item .text-sm {
+    color: #6b7280; /* Default text color */
+    transition: color 0.3s;
+}
+.stepper-item.active .text-sm {
+    color: var(--primary-blue); /* Active step text color */
+    font-weight: 600;
+}
+.stepper-item.completed .text-sm {
+    color: #374151; /* Darker gray for completed step text */
+}
+
+.documentation-card {
+    transition: transform 0.2s;
+}
+.documentation-card:hover {
+    transform: translateY(-5px);
+}
+/* Make editor responsive */
+@media (max-width: 768px) {
+    .code-editor {
+        height: 300px;
+    }
+    /* Adjust stepper for smaller screens */
+     .stepper-item:not(:last-child)::after {
+        left: calc(50% + 10px);
+        width: calc(100% - 20px);
+    }
+    .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.875rem; /* Smaller font size */
+    }
+     .stepper-item:not(:last-child)::after {
+        top: 11px; /* Adjust line position */
+    }
+}
+/* Additional styles for aspect ratio (Tailwind plugin might be needed, adding basic fallback) */
+.aspect-w-16 { position: relative; padding-bottom: calc(9 / 16 * 100%); }
+.aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
+```
+
+---
